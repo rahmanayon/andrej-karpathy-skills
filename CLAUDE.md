@@ -1,5 +1,32 @@
 # CLAUDE.md
 
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Repository Overview
+
+This is a **pure documentation repository** — there is no build system, no test runner, and no package dependencies. The "product" is a set of four behavioral guidelines for AI coding assistants, derived from Andrej Karpathy's observations on LLM coding pitfalls.
+
+## Architecture: Three Synchronized Files
+
+The core content (the four principles) is distributed across three files that must stay in sync whenever the principles change:
+
+| File | Purpose |
+|------|---------|
+| `CLAUDE.md` | Per-project usage via Claude Code's `CLAUDE.md` convention |
+| `.cursor/rules/karpathy-guidelines.mdc` | Cursor IDE project rule (has YAML frontmatter with `alwaysApply: true`) |
+| `skills/karpathy-guidelines/SKILL.md` | Claude Code plugin skill (has YAML frontmatter with `name` and `description`) |
+
+The plugin manifest files (`.claude-plugin/plugin.json` and `.claude-plugin/marketplace.json`) define how this repo is distributed as a Claude Code plugin. They point to `skills/karpathy-guidelines/` and do not contain principle content.
+
+**When editing the four principles:** update all three content files above. The frontmatter in `.mdc` and `SKILL.md` should not be changed unless metadata (name/description) is being updated.
+
+## Installation Methods (for end users, context for contributors)
+
+- **Plugin**: `/plugin marketplace add forrestchang/andrej-karpathy-skills` then `/plugin install andrej-karpathy-skills@karpathy-skills`
+- **Per-project**: `curl -o CLAUDE.md https://raw.githubusercontent.com/forrestchang/andrej-karpathy-skills/main/CLAUDE.md`
+
+## Behavioral Guidelines
+
 Behavioral guidelines to reduce common LLM coding mistakes. Merge with project-specific instructions as needed.
 
 **Tradeoff:** These guidelines bias toward caution over speed. For trivial tasks, use judgment.
